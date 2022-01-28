@@ -35,6 +35,14 @@
         </tr>
       </table>
     </div>
+      <% @book.book_comments.each do |book_comment| %>
+        <%= image_tag book_comment.user.get_profile_image, size: "100x100" %>
+        <%= book_comment.user.name %>
+        <%= book_comment.comment %>
+        <% if @book.user == current_user %>
+          <%= link_to 'Destroy', book_book_comment_path(@book, book_comment), method: :delete, data: { confirm: '本当に消しますか？' }, class: "btn btn-sm btn-danger destroy_book_#{@book.id}" %>
+        <% end %>
+      <% end %>
     <div>
       <%= form_with model: [@book, @book_comment], local: true do |f| %>
         <%= f.text_area :comment %>
