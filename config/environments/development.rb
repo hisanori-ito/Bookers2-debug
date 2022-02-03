@@ -84,8 +84,8 @@ Rails.application.configure do
     address:              'smtp.gmail.com',
     domain:               'gmail.com',
     user_name:            ENV['KEY'],#Gmailのアドレス
-    password:             ENV['SECRET_K'],#後述！大苦戦しました！
-    authentication:       'login',
+    password:             ENV['SECRET_KEY'],#後述！大苦戦しました！
+    authentication:       'plain',
     enable_starttls_auto: true
   }
 
