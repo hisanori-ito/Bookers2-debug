@@ -14,6 +14,22 @@
         <td>follows: <%= user.followings.count %></td>
         <td>followers: <%= user.followers.count %></td>
         <td><%= render 'relationships/btn', user: user %></td>
+        <td>
+          <% unless user.id == current_user.id %>
+            <% if (current_user.follow? user) && (user.follow? current_user) %>
+              <% if @isRoom == true %>
+                <p class="user-show-room"><a href="/rooms/<%= @roomId %>" class="btn btn-primary btn-lg">chat!!</p>
+              <% else %>
+                <%= form_with model:@room, local:true do |f| %>
+                  <%= fields_for @entry do |e| %>
+                    <%= e.hidden_field :user_id, value: user.id %>
+                  <% end %>
+                  <%= f.submit "chat!!", class:"btn btn-primary btn-lg user-show-chat" %>
+                <% end %>
+              <% end %>
+            <% end %>
+          <% end %>
+        </td>
         <td><%= link_to 'Show', user, class: "user_#{user.id}" %></td>
       </tr>
     <% end %>

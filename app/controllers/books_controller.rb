@@ -13,6 +13,12 @@ class BooksController < ApplicationController
     # これでも行けた↓
     @books = Book.includes(:favorites).sort {|a,b| b.favorites.size <=> a.favorites.size}
     # @books = Book.last_week
+    # to = Time.current.at_beginning_of_day
+    # from = (to - 6.day).at_end_of_day
+    # @books = Book.all.sort {|a,b|
+    #   b.favorites.where(created_at: from...to).size <=>
+    #   a.favorites.where(created_at: from...to).size
+    # }
     @book = Book.new
   end
 
