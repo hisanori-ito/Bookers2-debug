@@ -1,0 +1,46 @@
+<table class="table table-bordered">
+  <thead>
+    <tr>
+      <th>今日の投稿数</th>
+      <th>前日の投稿数</th>
+      <th>前日比</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><%= today %></td>
+      <td><%= yesterday %></td>
+      <td>
+        <% if yesterday == 0 %>
+          特になし！！
+        <% else %>
+          <% result = today / yesterday.to_f %>
+          <%= (result * 100).round %>
+        <% end %>
+      </td>
+    </tr>
+  </tbody>
+</table>
+<table class="table table-bordered">
+  <thead>
+    <tr>
+      <th>今週の投稿数</th>
+      <th>先週の投稿数</th>
+      <th>先週比</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><%= this_week %></td>
+      <td><%= last_week %></td>
+      <td>
+        <% if last_week == 0 %>
+          特になし！！
+        <% else %>
+          <% result = this_week / last_week.to_f %>
+          <%= (result * 100).round %>
+        <% end %>
+      </td>
+    </tr>
+  </tbody>
+</table>

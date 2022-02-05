@@ -7,6 +7,15 @@ class Book < ApplicationRecord
 
   has_many :view_counts, dependent: :destroy
 
+  scope :posted_today, -> { where(created_at: Time.zone.now.all_day) }
+  scope :posted_yesterday, -> { where(created_at: 1.day.ago.all_day) }
+  scope :posted_this_week, -> { to = Time.current.at_beginning_of_day,
+                                from = (to - 1.week),
+                                where(created_at: from...to )}
+  scope :posted_last_week, -> { to = 1.week.ago,
+                                from = (to - 2.week),
+                                where(created_at: from...to )}
+
   validates :title,presence:true
   validates :body,presence:true,length:{maximum:200}
 

@@ -9,6 +9,10 @@
     <div class='col-md-8 offset-md-1'>
       <h2>Books</h2>
       <%= render 'books/index',books: @books %>
+      <div class='table_width'>
+        <h2 class="text-center">投稿数の前日比・前週比</h2>
+        <%= render 'books/record', {today: @post_today, yesterday: @post_yesterday, this_week: @post_this_week, last_week: @post_last_week } %>
+      </div>
     </div>
   </div>
 </div>
