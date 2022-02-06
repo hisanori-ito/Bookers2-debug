@@ -17,6 +17,9 @@ class Book < ApplicationRecord
   scope :posted_this_week, -> { where(created_at: 6.day.ago.beginning_of_day..Time.zone.now.end_of_day )}
   scope :posted_last_week, -> { where(created_at: 2.week.ago.beginning_of_day..1.week.ago.end_of_day )}
 
+  scope :latest, -> {order(created_at: :desc)}
+  scope :evaluate, -> {order(evaluation: :desc)}
+
   validates :title,presence:true
   validates :body,presence:true,length:{maximum:200}
 
