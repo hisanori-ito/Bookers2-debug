@@ -16,12 +16,19 @@ import "../stylesheets/application"
 //= require jquery
 //= require rails-ujs
 
+//= require jquery.raty.js
+
 Rails.start()
 Turbolinks.start()
 ActiveStorage.start()
+
+window.$ = window.jQuery = require('jquery');
 
 global.$ = jQuery
 global.$ = jQuery
 
 require("chartkick")
 require("chart.js")
+
+require('packs/raty')
+
