@@ -22,3 +22,6 @@ ActiveStorage.start()
 
 global.$ = jQuery
 global.$ = jQuery
+
+require("chartkick")
+require("chart.js")

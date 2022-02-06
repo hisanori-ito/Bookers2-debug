@@ -7,6 +7,10 @@ class UsersController < ApplicationController
     @user = User.find(params[:id])
     @books = @user.books
     @book = Book.new
+    @post_today = @books.posted_today.count
+    @post_yesterday = @books.posted_yesterday.count
+    @post_this_week = @books.posted_this_week.count
+    @post_last_week = @books.posted_last_week.count
   end
 
   def index
