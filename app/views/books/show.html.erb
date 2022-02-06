@@ -17,8 +17,21 @@
             <% end %>
           </td>
           <td><%= link_to @book.title, @book %></td>
-          <td><%= @book.body %></td>
+          <td>
+            <div id="star_rate_<%= @book.id %>"></div>
+            <script>
+            $('#star_rate_<%= @book.id %>').raty({
+              size: 36,
+              starOn: "<%= asset_path('star-on.png') %>",
+              starOff: "<%= asset_path('star-off.png') %>",
+              starHalf: "<%= asset_path('star-half.png') %>",
+              readOnly: true,
+              score: <%= @book.evaluation %>,
+            });
+            </script>
+          </td>
           <td class="comments_count">コメント数:<%= @book.book_comments.count %></td>
+          <td><%= @book.body %></td>
           <td class="fav_btn">
             <%= render "favorites/btn" , book: @book %>
           </td>

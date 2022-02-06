@@ -14,8 +14,19 @@ class BooksController < ApplicationController
 
   def index
     # @books = Book.all
-    # これでも行けた↓
-    @books = Book.includes(:favorites).sort {|a,b| b.favorites.size <=> a.favorites.size}
+    if params[:sort_create]
+      @books = Book.latest
+    else
+      # これでも行けた↓
+      @books = Book.includes(:favorites).sort {|a,b| b.favorites.size <=> a.favorites.size}
+    end
+
+    if params[:sort_evaluate]
+      @books = Book.evaluate
+    else
+      # これでも行けた↓
+      @books = Book.includes(:favorites).sort {|a,b| b.favorites.size <=> a.favorites.size}
+    end
     # @books = Book.last_week
     # to = Time.current.at_beginning_of_day
     # from = (to - 6.day).at_end_of_day
