@@ -9,12 +9,8 @@ class UsersController < ApplicationController
     @book = Book.new
     @post_today = @books.posted_today.count
     @post_yesterday = @books.posted_yesterday.count
-    to = Time.current.at_beginning_of_day
-    from = (to - 1.week)
-    @post_this_week = @books.where(created_at: from...to).count
-    to1 = 1.week.ago
-    from1 = (to - 2.week)
-    @post_last_week = @books.where(created_at: from1...to1).count
+    @post_this_week = @books.posted_this_week.count
+    @post_last_week = @books.posted_last_week.count
   end
 
   def index
